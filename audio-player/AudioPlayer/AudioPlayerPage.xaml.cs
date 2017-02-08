@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using AudioPlayer.Services;
+using AudioPlayer.ViewModels;
+using Xamarin.Forms;
 
 namespace AudioPlayer
 {
@@ -7,6 +9,7 @@ namespace AudioPlayer
 		public AudioPlayerPage()
 		{
 			InitializeComponent();
+			BindingContext = new AudioPlayerViewModel(DependencyService.Get<IAudioPlayerService>());
 		}
 	}
 }
