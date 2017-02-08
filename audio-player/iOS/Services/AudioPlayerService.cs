@@ -18,16 +18,6 @@ namespace AudioPlayer.iOS.Services
 
 		public AudioPlayerService()
 		{
-			var avSession = AVAudioSession.SharedInstance();
-			avSession.SetCategory(AVAudioSessionCategory.Playback);
-
-			NSError activationError = null;
-			avSession.SetActive(true, out activationError);
-
-			if (activationError != null)
-				Console.WriteLine(
-					"Could not activate audio session {0}",
-					activationError.LocalizedDescription);
 		}
 
 		public void Play(string pathToAudioFile)
