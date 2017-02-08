@@ -10,6 +10,7 @@ namespace AudioPlayer.ViewModels
 	{
 		private IAudioPlayerService _audioPlayer;
 		private bool _isStopped;
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public AudioPlayerViewModel(IAudioPlayerService audioPlayer)
 		{
@@ -62,7 +63,5 @@ namespace AudioPlayer.ViewModels
 				}));
 			}
 		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
 	}
 }
