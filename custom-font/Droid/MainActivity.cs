@@ -22,6 +22,10 @@ namespace CustomFont.Droid
 
 			global::Xamarin.Forms.Forms.Init(this, bundle);
 
+			FontManager.Current
+				.RegisterTypeFace("Fonts/Oswald/Oswald-Regular.ttf")
+				.RegisterTypeFace("Fonts/Pangolin/Pangolin-Regular.ttf");
+			
 			LoadApplication(new App());
 		}
 	}
