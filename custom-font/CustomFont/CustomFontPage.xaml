@@ -7,7 +7,7 @@
 			HorizontalOptions="Fill"
 			Padding="10,10,10,10">
 		<Label Text="Welcome to Xamarin Forms!" 
-				FontFamily="Oswald-Regular"
+				FontFamily="Pangolin-Regular"
 				HorizontalOptions="Center" />
 		<Entry Text="Edit Me" 
 				FontFamily="Pangolin-Regular"

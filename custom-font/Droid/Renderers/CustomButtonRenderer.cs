@@ -17,12 +17,22 @@ namespace CustomFont.Droid.Renderers
 			if (Element == null)
 				return;
 
+			if (Control == null)
+				return;
+
 			ChangeFont();
 		}
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
+
+			if (Element == null)
+				return;
+
+			if (Control == null)
+				return;
+
 
 			if (e.PropertyName == Button.FontFamilyProperty.PropertyName)
 			{

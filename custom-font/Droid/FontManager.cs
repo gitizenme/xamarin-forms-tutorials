@@ -8,7 +8,6 @@ namespace CustomFont.Droid
 	public class FontManager
 	{
 		private IDictionary<string, Typeface> _typefaces = null;
-
 		protected FontManager()
 		{
 			_typefaces = new Dictionary<string, Typeface>();
