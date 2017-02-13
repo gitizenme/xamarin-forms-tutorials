@@ -58,7 +58,7 @@ namespace CustomFont.Droid
 			control.TransformationMethod = null;
 			var typeface = string.IsNullOrEmpty(fontFamily) ?
 				Typeface.Default :
-				FontManager.Current.GetTypeface(fontFamily);
+				GetTypeface(fontFamily);
 			control.Typeface = typeface;
 		}
 
