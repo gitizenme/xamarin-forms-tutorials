@@ -53,6 +53,15 @@ namespace CustomFont.Droid
 			return this;
 		}
 
+		public void ChangeFont(Android.Widget.TextView control, string fontFamily)
+		{
+			control.TransformationMethod = null;
+			var typeface = string.IsNullOrEmpty(fontFamily) ?
+				Typeface.Default :
+				FontManager.Current.GetTypeface(fontFamily);
+			control.Typeface = typeface;
+		}
+
 		private static FontManager _current = null;
 		public static FontManager Current
 		{
