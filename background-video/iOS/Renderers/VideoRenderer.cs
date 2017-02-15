@@ -41,11 +41,7 @@ namespace BackgroundVideo.iOS.Renderers
 					Console.WriteLine("Notification: {0}", args.Notification);
 					Console.WriteLine("FinishReason", args.FinishReason);
 
-					if (Element != null)
-					{
-						if (Element.OnFinishedPlaying != null)
-							Element.OnFinishedPlaying();
-					}
+					Element?.OnFinishedPlaying?.Invoke();
 				});
 			}
 		}

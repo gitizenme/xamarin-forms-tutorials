@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Diagnostics;
+using Xamarin.Forms;
 
 namespace BackgroundVideo
 {
@@ -7,6 +8,7 @@ namespace BackgroundVideo
 		public BackgroundVideoPage()
 		{
 			InitializeComponent();
+			video.OnFinishedPlaying = () => { Debug.WriteLine("Video Finished"); };
 		}
 	}
 }
