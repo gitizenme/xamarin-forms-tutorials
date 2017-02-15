@@ -8,11 +8,28 @@
 		<controls:Video Source="Orchestra" Loop="true" HorizontalOptions="Fill" VerticalOptions="Fill" />
 		<StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20,10,10,20">
 			<Entry Placeholder="username" FontSize="Large" 
-				FontFamily="Georgia" HeightRequest="50" />
+				FontFamily="Georgia" HeightRequest="50">
+				<Entry.PlaceholderColor>
+	        		<OnPlatform x:TypeArguments="Color" Android="Silver" />
+    			</Entry.PlaceholderColor>
+				<Entry.TextColor>
+	        		<OnPlatform x:TypeArguments="Color" Android="White" />
+    			</Entry.TextColor>
+			</Entry>
 			<Entry Placeholder="password" FontSize="Large" 
-				FontFamily="Georgia" HeightRequest="50" IsPassword="true" />
-			<Button Text="login" BackgroundColor="#3b5998" TextColor="#ffffff" 
-				FontSize="Large" FontFamily="Georgia" />
+				FontFamily="Georgia" HeightRequest="50" IsPassword="true">
+				<Entry.PlaceholderColor>
+	        		<OnPlatform x:TypeArguments="Color" Android="Silver" />
+    			</Entry.PlaceholderColor>
+				<Entry.TextColor>
+	        		<OnPlatform x:TypeArguments="Color" Android="White" />
+    			</Entry.TextColor>
+			</Entry>
+			<BoxView Color="Transparent" HeightRequest="10" />
+			<Button Text="sign in" BackgroundColor="#3b5998" TextColor="#ffffff" 
+				FontSize="Large" />
+			<Button Text="sign up" BackgroundColor="#fa3c4c" TextColor="#ffffff" 
+				FontSize="Large" />
 		</StackLayout>
 	</Grid>
 </ContentPage>

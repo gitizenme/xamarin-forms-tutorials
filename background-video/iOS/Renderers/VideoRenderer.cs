@@ -68,7 +68,7 @@ namespace BackgroundVideo.iOS.Renderers
 		void InitVideoPlayer()
 		{
 			var path = Path.Combine(NSBundle.MainBundle.BundlePath, "Videos", Element.Source + ".mp4");
-			//			Console.WriteLine ("Path: " + path);
+
 			if (!NSFileManager.DefaultManager.FileExists(path))
 			{
 				Console.WriteLine("Video not exist");
@@ -80,8 +80,6 @@ namespace BackgroundVideo.iOS.Renderers
 				SetNativeControl(videoPlayer.View);
 				return;
 			}
-
-			//			InitNotification();
 
 			// Load the video from the app bundle.
 			NSUrl videoURL = NSBundle.MainBundle.GetUrlForResource(Element.Source, @"mp4", "Videos");
