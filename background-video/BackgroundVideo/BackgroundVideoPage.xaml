@@ -5,6 +5,14 @@
 		xmlns:controls="clr-namespace:BackgroundVideo.Controls" 
 		x:Class="BackgroundVideo.BackgroundVideoPage">
 	<Grid Padding="0" RowSpacing="0" ColumnSpacing="0">
-		<controls:Video Source="Highlights" Loop="true" HorizontalOptions="Fill" VerticalOptions="Fill" />
+		<controls:Video Source="Orchestra" Loop="true" HorizontalOptions="Fill" VerticalOptions="Fill" />
+		<StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20,10,10,20">
+			<Entry Placeholder="username" FontSize="Large" 
+				FontFamily="Georgia" HeightRequest="50" />
+			<Entry Placeholder="password" FontSize="Large" 
+				FontFamily="Georgia" HeightRequest="50" IsPassword="true" />
+			<Button Text="login" BackgroundColor="#3b5998" TextColor="#ffffff" 
+				FontSize="Large" FontFamily="Georgia" />
+		</StackLayout>
 	</Grid>
 </ContentPage>
