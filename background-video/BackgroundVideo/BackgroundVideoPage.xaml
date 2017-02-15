@@ -5,7 +5,7 @@
 		xmlns:controls="clr-namespace:BackgroundVideo.Controls" 
 		x:Class="BackgroundVideo.BackgroundVideoPage">
 	<Grid Padding="0" RowSpacing="0" ColumnSpacing="0">
-		<controls:Video Source="Orchestra" Loop="true" HorizontalOptions="Fill" VerticalOptions="Fill" />
+		<controls:Video Source="Videos/Orchestra.mp4" Loop="true" HorizontalOptions="Fill" VerticalOptions="Fill" />
 		<StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20,10,10,20">
 			<Entry Placeholder="username" FontSize="Large" 
 				FontFamily="Georgia" HeightRequest="50">
