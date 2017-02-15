@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Media;
@@ -15,7 +14,9 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(Video), typeof(VideoRenderer))]
 namespace BackgroundVideo.Droid.Renderers
 {
-	public class VideoRenderer : ViewRenderer<Video, FrameLayout>, TextureView.ISurfaceTextureListener, ISurfaceHolderCallback
+	public class VideoRenderer : ViewRenderer<Video, FrameLayout>, 
+								 TextureView.ISurfaceTextureListener, 
+								 ISurfaceHolderCallback
 	{
 		private bool _isCompletionSubscribed = false;
 
@@ -60,7 +61,6 @@ namespace BackgroundVideo.Droid.Renderers
 						_videoPlayer.Start();
 						if (Element != null)
 							_videoPlayer.Looping = Element.Loop;
-						//Console.WriteLine("Is Video `" + fullPath + "` Looping? " + Element.Loop);
 					};
 				}
 
@@ -99,7 +99,9 @@ namespace BackgroundVideo.Droid.Renderers
 
 					ISurfaceHolder holder = videoView.Holder;
 					if (Build.VERSION.SdkInt < BuildVersionCodes.Honeycomb)
+					{
 						holder.SetType(SurfaceType.PushBuffers);
+					}
 					holder.AddCallback(this);
 
 					_mainVideoView = videoView;
@@ -127,7 +129,7 @@ namespace BackgroundVideo.Droid.Renderers
 
 				SetNativeControl(_mainFrameLayout);
 
-				PlayVideo(string.Format("Videos/{0}.mp4", Element.Source));
+				PlayVideo(Element.Source);
 			}
 			if (e.OldElement != null)
 			{
@@ -158,7 +160,7 @@ namespace BackgroundVideo.Droid.Renderers
 			if (e.PropertyName == Video.SourceProperty.PropertyName)
 			{
 				Console.WriteLine("Play video: " + Element.Source);
-				PlayVideo(string.Format("Videos/{0}.mp4", Element.Source));
+				PlayVideo(Element.Source);
 			}
 			else if (e.PropertyName == Video.LoopProperty.PropertyName)
 			{
@@ -167,18 +169,9 @@ namespace BackgroundVideo.Droid.Renderers
 			}
 		}
 
-		void Player_Completion(object sender, EventArgs e)
+		private void Player_Completion(object sender, EventArgs e)
 		{
-			Console.WriteLine("Player completion.");
-			if (Element != null)
-			{
-				Console.WriteLine("Element is not null");
-				if (Element.OnFinishedPlaying != null)
-				{
-					Console.WriteLine("Action is not null");
-					Element.OnFinishedPlaying.Invoke();
-				}
-			}
+			Element?.OnFinishedPlaying?.Invoke();
 		}
 
 		private void RemoveVideo()
@@ -186,27 +179,25 @@ namespace BackgroundVideo.Droid.Renderers
 			_placeholder.Visibility = ViewStates.Visible;
 		}
 
-		void PlayVideo(string fullPath)
+		private void PlayVideo(string fullPath)
 		{
-			var list = Forms.Context.Assets.List("Videos");
-			if (!list.Contains(string.Format("{0}.mp4", Element.Source)))
-			{
-				Console.WriteLine("Play video: " + Element.Source + " not found");
-				_mainVideoView.Visibility = ViewStates.Gone;
-				return;
-			}
-
 			Android.Content.Res.AssetFileDescriptor afd = null;
 
 			try
 			{
 				afd = Context.Assets.OpenFd(fullPath);
 			}
+			catch (Java.IO.IOException ex)
+			{
+				Console.WriteLine("Play video: " + Element.Source + " not found because " + ex);
+				_mainVideoView.Visibility = ViewStates.Gone;
+			}
 			catch (Exception ex)
 			{
 				Console.WriteLine("Error openfd: " + ex);
 				_mainVideoView.Visibility = ViewStates.Gone;
 			}
+
 			if (afd != null)
 			{
 				Console.WriteLine("Lenght " + afd.Length);
@@ -233,6 +224,7 @@ namespace BackgroundVideo.Droid.Renderers
 			var aspectRatio = (double)videoHeight / videoWidth;
 
 			int newWidth, newHeight;
+
 			if (controlHeight <= (int)(controlWidth * aspectRatio))
 			{
 				// limited by narrow width; restrict height
@@ -244,8 +236,10 @@ namespace BackgroundVideo.Droid.Renderers
 				newWidth = (int)(controlHeight / aspectRatio);
 				newHeight = controlHeight;
 			}
+
 			int xoff = (controlWidth - newWidth) / 2;
 			int yoff = (controlHeight - newHeight) / 2;
+
 			Console.WriteLine("video=" + videoWidth + "x" + videoHeight +
 					" view=" + controlWidth + "x" + controlHeight +
 					" newView=" + newWidth + "x" + newHeight +
@@ -280,7 +274,7 @@ namespace BackgroundVideo.Droid.Renderers
 
 		public void OnSurfaceTextureUpdated(SurfaceTexture surface)
 		{
-			//Console.WriteLine("Surface.TextureUpdated");
+			Console.WriteLine("Surface.TextureUpdated");
 		}
 
 		#endregion
