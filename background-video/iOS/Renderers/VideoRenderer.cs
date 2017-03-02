@@ -13,8 +13,6 @@ namespace BackgroundVideo.iOS.Renderers
 {
 	public class VideoRenderer : ViewRenderer<Video, UIView>
 	{
-		const string NotificationPlayback = "MPMoviePlayerLoadStateDidChangeNotification";
-
 		MPMoviePlayerController videoPlayer;
 		NSObject notification = null;
 
@@ -29,8 +27,7 @@ namespace BackgroundVideo.iOS.Renderers
 			if (e.OldElement != null)
 			{
 				// Unsubscribe
-				if (notification != null)
-					notification.Dispose();
+				notification?.Dispose();
 			}
 			if (e.NewElement != null)
 			{
@@ -39,31 +36,16 @@ namespace BackgroundVideo.iOS.Renderers
 				{
 					/* Access strongly typed args */
 					Console.WriteLine("Notification: {0}", args.Notification);
-					Console.WriteLine("FinishReason", args.FinishReason);
+					Console.WriteLine("FinishReason: {0}", args.FinishReason);
 
 					Element?.OnFinishedPlaying?.Invoke();
 				});
 			}
 		}
 
-		void InitNotification()
-		{
-			var center = NSNotificationCenter.DefaultCenter;
-			center.AddObserver(new NSString(NotificationPlayback), (notify) =>
-			{
-				if ((videoPlayer.LoadState == MPMovieLoadState.Playable || videoPlayer.LoadState == MPMovieLoadState.PlaythroughOK)
-					&& videoPlayer.PlaybackState != MPMoviePlaybackState.Playing)
-				{
-					videoPlayer.Play();
-					NSNotificationCenter.DefaultCenter.RemoveObserver(this,
-						NotificationPlayback);
-				}
-			}, this);
-		}
-
 		void InitVideoPlayer()
 		{
-			
+
 			var path = Path.Combine(NSBundle.MainBundle.BundlePath, Element.Source);
 
 			if (!NSFileManager.DefaultManager.FileExists(path))
@@ -88,9 +70,9 @@ namespace BackgroundVideo.iOS.Renderers
 			videoPlayer.ScalingMode = MPMovieScalingMode.AspectFill;
 			videoPlayer.RepeatMode = Element.Loop ? MPMovieRepeatMode.One : MPMovieRepeatMode.None;
 			videoPlayer.View.BackgroundColor = UIColor.Clear;
-			foreach (UIView aSubView in videoPlayer.View.Subviews)
+			foreach (UIView subView in videoPlayer.View.Subviews)
 			{
-				aSubView.BackgroundColor = UIColor.Clear;
+				subView.BackgroundColor = UIColor.Clear;
 			}
 
 			videoPlayer.PrepareToPlay();
