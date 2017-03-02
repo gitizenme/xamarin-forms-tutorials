@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 		xmlns:local="clr-namespace:BackgroundVideo" 
@@ -11,20 +11,20 @@
 			<Entry Placeholder="username" FontSize="Large" 
 				FontFamily="Georgia" HeightRequest="50">
 				<Entry.PlaceholderColor>
-	        		<OnPlatform x:TypeArguments="Color" Android="Silver" />
-    			</Entry.PlaceholderColor>
+					<OnPlatform x:TypeArguments="Color" Android="Silver" />
+				</Entry.PlaceholderColor>
 				<Entry.TextColor>
-	        		<OnPlatform x:TypeArguments="Color" Android="White" />
-    			</Entry.TextColor>
+					<OnPlatform x:TypeArguments="Color" Android="White" />
+				</Entry.TextColor>
 			</Entry>
 			<Entry Placeholder="password" FontSize="Large" 
 				FontFamily="Georgia" HeightRequest="50" IsPassword="true">
 				<Entry.PlaceholderColor>
-	        		<OnPlatform x:TypeArguments="Color" Android="Silver" />
-    			</Entry.PlaceholderColor>
+					<OnPlatform x:TypeArguments="Color" Android="Silver" />
+				</Entry.PlaceholderColor>
 				<Entry.TextColor>
-	        		<OnPlatform x:TypeArguments="Color" Android="White" />
-    			</Entry.TextColor>
+					<OnPlatform x:TypeArguments="Color" Android="White" />
+				</Entry.TextColor>
 			</Entry>
 			<BoxView Color="Transparent" HeightRequest="10" />
 			<Button Text="sign in" BackgroundColor="#3b5998" TextColor="#ffffff" 

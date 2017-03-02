@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace BackgroundVideo.Controls
 {
-	public class Video: View
+	public class Video : View
 	{
 		public static readonly BindableProperty SourceProperty =
 			BindableProperty.Create(
