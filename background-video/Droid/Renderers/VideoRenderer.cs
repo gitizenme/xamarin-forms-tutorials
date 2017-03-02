@@ -14,8 +14,8 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer(typeof(Video), typeof(VideoRenderer))]
 namespace BackgroundVideo.Droid.Renderers
 {
-	public class VideoRenderer : ViewRenderer<Video, FrameLayout>, 
-								 TextureView.ISurfaceTextureListener, 
+	public class VideoRenderer : ViewRenderer<Video, FrameLayout>,
+								 TextureView.ISurfaceTextureListener,
 								 ISurfaceHolderCallback
 	{
 		private bool _isCompletionSubscribed = false;
@@ -231,7 +231,8 @@ namespace BackgroundVideo.Droid.Renderers
 				newWidth = controlWidth;
 				newHeight = (int)(controlWidth * aspectRatio);
 			}
-			else {
+			else
+			{
 				// limited by short height; restrict width
 				newWidth = (int)(controlHeight / aspectRatio);
 				newHeight = controlHeight;
