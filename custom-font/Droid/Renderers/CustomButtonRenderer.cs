@@ -14,39 +14,23 @@ namespace CustomFont.Droid.Renderers
 		{
 			base.OnElementChanged(e);
 
-			if (Element == null)
+			if (Control == null || Element == null)
 				return;
-
-			if (Control == null)
-				return;
-
-			ChangeFont();
+			
+			FontManager.Current.ChangeFont(Control, Element.FontFamily);
 		}
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (Element == null)
+			if (Control == null || Element == null)
 				return;
-
-			if (Control == null)
-				return;
-
-
+			
 			if (e.PropertyName == Button.FontFamilyProperty.PropertyName)
 			{
-				ChangeFont();
+				FontManager.Current.ChangeFont(Control, Element.FontFamily);
 			}
-		}
-
-		private void ChangeFont()
-		{
-			Control.TransformationMethod = (null);
-			var typeface = string.IsNullOrEmpty(Element.FontFamily) ?
-				Typeface.Default :
-				FontManager.Current.GetTypeface(Element.FontFamily);
-			Control.Typeface = typeface;
 		}
 	}
 }
